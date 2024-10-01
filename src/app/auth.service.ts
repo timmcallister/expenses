@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap } from 'rxjs';
 
 @Injectable({
@@ -25,7 +25,9 @@ export class AuthService {
   register(username: string, password: string): Observable<any> {
     // sim registration
     const mockResponse = { success: true, message: 'Registration successful'};
-    return this.http.post(`${this.apiUrl}/register`, { username, password });
+    return of(mockResponse);
+    //return this.http.post(`${this.apiUrl}/register`, { username, password });
+
   }
 
   logout() {
