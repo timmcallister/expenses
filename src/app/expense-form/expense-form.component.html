@@ -1,1 +1,42 @@
-<p>expense-form works!</p>
+<h2>{{isEditing ? 'Edit Expense' : 'Add Expense'}}</h2>
+
+@if (errorMessage) {
+    <p>{{ errorMessage }}</p>
+}
+
+<form #expenseForm="ngForm" (ngSubmit)="saveExpense()">
+    <div>
+        <label for="description">Description: </label>
+        <input
+            id="description"
+            name="description"
+            [(ngModel)]="expense.description"
+            required
+        />
+    </div>
+
+    <div>
+        <label for="amount">Amount: </label>
+        <input
+            id="amount"
+            name="amount"
+            type="number"
+            [(ngModel)]="expense.amount"
+            required  
+        />
+    </div>
+
+    <div>
+        <label for="date">Date: </label>
+        <input 
+            id="date"
+            name="date"
+            type="date"
+            [(ngModel)]="expense.date"
+            required
+        />
+    </div>
+
+    <button type="submit"> {{ isEditing ? 'Update' : 'Create' }}</button>
+
+</form>

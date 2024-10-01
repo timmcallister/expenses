@@ -1,1 +1,27 @@
-<p>expense-list works!</p>
+<h2>Expense List</h2>
+@if (errorMessage) {
+    <p>{{errorMessage}}</p>
+}
+<table>
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (expense of expenses; track expense.id) {
+            <td>{{expense.description}}</td>
+            <td>{{expense.amount}}</td>
+            <td>{{expense.date}}</td>
+            <td>
+                <button (click)="deleteExpense(expense.id)">
+                    Delete
+                </button>
+                <a routerLink="['/expense/edit', expense.id]">Edit</a>
+            </td>
+        }
+    </tbody>
+</table>
