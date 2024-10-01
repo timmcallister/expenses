@@ -1,0 +1,18 @@
+nav {
+    background-color: #1f2937;
+    padding: 1rem;
+}
+
+nav a {
+    color: #9ca3af;
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+nav a.active {
+    color: #ffffff;
+}
