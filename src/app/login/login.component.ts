@@ -26,13 +26,21 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
-      if (this.authService.login(username, password)) {
-        this.successMessage = 'Login Successful';
-        this.errorMessage = null;
-      } else {
-        this.errorMessage = "Invalid username or password.";
-        this.successMessage = null;
-      }
+      this.authService.login(username, password).subscribe({
+        next: (response) => {
+          this.authService.saveToken(response.token);
+          this.successMessage = 'Login Successful';
+          this.errorMessage = null;
+
+          setTimeout(() => {
+            this.router.navigate(['/expenses']);
+          }, 1000);
+        },
+        error: () => {
+          this.errorMessage = 'Invalid username or password';
+          this.successMessage = null;
+        }
+      });
     }
   }
 }
